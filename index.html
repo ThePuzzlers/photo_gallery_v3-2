@@ -9,6 +9,10 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+    <script type="text/javascript" src="js/images.js"></script>
+
+
+
     <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
     <link rel="stylesheet" href="js/lightcase/src/css/lightcase.css">
     <link rel="stylesheet" href="css/reset.css">
@@ -19,6 +23,7 @@
 
   <body>
     <div class="container">
+      <div class="test"></div>
     <header>
       <form class="form-search" action="index.html" method="post">
         <input type="text" id="user-search" name="user-search" placeholder="Search">
@@ -26,7 +31,7 @@
     </header>
 
     <section class="wrapper">
-        <ul class="gallery">
+        <ul id="gallery">
           <li><a href="photos/01.jpg" data-rel="lightcase:myCollection"><img src="photos/thumbnails/01.jpg" alt="testing"></a></li>
           <li><a href="photos/02.jpg" data-rel="lightcase:myCollection"><img src="photos/thumbnails/02.jpg" alt="testing"></a></li>
           <li><img src="photos/thumbnails/03.jpg" alt="testing"></li>
@@ -44,7 +49,9 @@
   </container>
 
   <script type="text/javascript" src="js/lightcase/src/js/lightcase.js"></script>
+  <script type="text/javascript" src="js/photo-gallery.js"></script>
   <script type="text/javascript" src="js/images.js"></script>
   <script type="text/javascript" src="js/search.js"></script>
+
   </body>
 </html>

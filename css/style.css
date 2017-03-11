@@ -7,7 +7,7 @@ body {
   width: 100%;
 }
 
-.gallery {
+#gallery {
   width: 90%;
   display: flex;
   flex-wrap: wrap;
@@ -43,16 +43,16 @@ input#user-search {
 
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .gallery li {
+  #gallery li {
     width: 50%;
     padding-right: 2.5%;
   }
 
-  .gallery img {
+  #gallery img {
     width: 100%;
   }
 
-  .gallery li:nth-child(2n+2) {
+  #gallery li:nth-child(2n+2) {
     padding-left: 2.5%;
     padding-right: 0;
     }
@@ -74,18 +74,18 @@ input#user-search {
     margin-right: auto;
   }
 
-  .gallery li {
+  #gallery li {
     width: 20%;
     margin-right: 6.6666666667%;
     margin-top: 3%;
   }
 
 
-  .gallery img {
+  #gallery img {
     width: 100%;
   }
 
-  .gallery li:nth-child(4n+4) {
+  #gallery li:nth-child(4n+4) {
     padding-left: 0;
     margin-right: 0;
     }
