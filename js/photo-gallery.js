@@ -22,7 +22,9 @@ function print( message ) {
 
 // creates a string with the certain values of the images
 function imageListing(imgSrc, thumbSrc, alt) {
-  imgString += '<li><a href="' + imgSrc + '" data-rel="lightcase:myCollection"><img src="' + thumbSrc + '" alt="' + alt + '"></a></li>'
+  imgString += '<li><a href="' + imgSrc
+  imgString += '" data-rel="lightcase:myCollection"><img src="' + thumbSrc
+  imgString += '" alt="' + alt + '"></a></li>'
   return imgString;
 }
 
