@@ -3,7 +3,6 @@
 // afterwards the data should be submitted in real time
 
 
-
 function print( message ) {
   var outputDiv = document.getElementById('gallery');
   outputDiv.innerHTML = message;
@@ -14,6 +13,9 @@ var matchingImgTag = [];
 var allImages = [];
 var filteredImages = [];
 var charCheck;
+var deletingImages = [];
+var loopCount = 0;
+
 
 
 for(i = 0; i < images.length; i++) {
@@ -42,21 +44,89 @@ $( "#user-search" ).keydown(function( event ) {
 
       for(i = 0; i < allImages.length; i++) {
 
-        if(allImages[i].charAt(0) === searchResult[0] && filteredImages.indexOf(searchResult) == -1) {
+        if(allImages[i].charAt(0) === searchResult[0]) {
         filteredImages.push(allImages[i]);
         }
       }
     }
 
+    ///////// All the code above just puts the related images in an array ONCE
 
-    // charCheck = searchResult.length;
-    //
-    // for(i = 0; i < filteredImages.length; i++) {
-    //
-    //   if(filteredImages[i].charAt(charCheck) != searchResult[charCheck]) {
-    //   filteredImages.pop(filteredImages[i]);
-    //   }
-    // }
+
+
+    ///////// All the code underneath works with this selection and updates it
+    charCheck = searchResult.length -1;
+
+    console.log(filteredImages.length)
+
+    console.log(filteredImages);
+
+
+
+if (filteredImages.length > 0) {
+
+
+
+    for(i = 0; i < filteredImages.length; i++) {
+
+      if(filteredImages[i].charAt(charCheck) != searchResult[charCheck]) {
+      deletingImages.push(filteredImages[i]);
+    }
+
+    }
+
+
+
+    for (i = 0; i < deletingImages.length; i++) {
+      var imagePosition = filteredImages.indexOf(deletingImages[i]);
+
+
+      if (imagePosition != -1) {
+
+        filteredImages.splice(imagePosition, 1);
+
+      }
+    }
+  }
+
+  if (filteredImages.length == 0)  {
+
+      for(i = 0; i < deletingImages.length; i++) {
+          var checkDeletedImage = deletingImages[i];
+            for(y = 0; searchResult.length > y; y++ ) {
+              if(checkDeletedImage.charAt(y) == searchResult[y]) {
+                loopCount++;
+                if (loopCount == searchResult.length) {
+                  filteredImages.push(checkDeletedImage);
+                  loopCount = 0;
+                }
+                // console.log(checkDeletedImage);
+              } else {
+                break;
+              }
+            }
+
+
+
+
+    }
+
+  }
+
+  console.log(filteredImages + 'test');
+
+
+
+
+      //
+      // if (imagePostions.length != 0) {
+      //   var slicing = imagePostions.join();
+      //   console.log(slicing);
+      //
+        // var testing = filteredImages.remove(0,2);
+        // console.log(testing);
+      // }
+
 
 
     //   for(i = 0; i < allImages.length; i++) {
@@ -69,13 +139,16 @@ $( "#user-search" ).keydown(function( event ) {
     // }
 
 
-    console.log(filteredImages);
+    // console.log(filteredImages);
 
 
-      var searchResultConcat = searchResult.join('');
-     console.log(searchResultConcat);
+    //   var searchResultConcat = searchResult.join('');
+    //  console.log(searchResultConcat);
 
-     console.log(charCheck);
+
+     console.log(deletingImages);
+    //  console.log(charCheck);
+
 
 
 });
