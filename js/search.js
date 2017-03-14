@@ -15,28 +15,6 @@ var filteredImages = [];
 var charCheck;
 var deletingImages = [];
 var loopCount = 0;
-var selectedImage;
-
-
-function charLoop (charCheck, userSearch) {
-
-  var trueCount = 0;
-
-  for (y = 0; y < userSearch; y++) {
-    if(selectedImage.charAt(y) == searchResult[y]){
-
-      trueCount = trueCount + 1;
-    } else if (selectedImage.charAt(y) != userSearch[y]) {
-      trueCount = trueCount + 0;
-    }
-
-  }
-  return trueCount;
-
-  // if (trueCount == userSearch.length) {
-  // }
-
-}
 
 
 
@@ -77,97 +55,68 @@ $( "#user-search" ).keydown(function( event ) {
 
 
     ///////// All the code underneath works with this selection and updates it
-
-
-console.log(filteredImages);
-
-
     charCheck = searchResult.length -1;
-    var userSearch = searchResult.length;
+
+    console.log(filteredImages.length)
+
+    console.log(filteredImages);
 
 
-        for(i = 0; i < filteredImages.length; i++) {
-              selectedImage = filteredImages[i];
-              trueCount = charLoop(charCheck, userSearch);
 
-                if (trueCount === userSearch){
-                  console.log('true');
-                } else {
-                  console.log('false');
+if (filteredImages.length > 0) {
+
+
+
+    for(i = 0; i < filteredImages.length; i++) {
+
+      if(filteredImages[i].charAt(charCheck) != searchResult[charCheck]) {
+      deletingImages.push(filteredImages[i]);
+    }
+
+    }
+
+
+
+    for (i = 0; i < deletingImages.length; i++) {
+      var imagePosition = filteredImages.indexOf(deletingImages[i]);
+
+
+      if (imagePosition != -1) {
+
+        filteredImages.splice(imagePosition, 1);
+
+      }
+    }
+  }
+
+  if (filteredImages.length == 0)  {
+
+      for(i = 0; i < deletingImages.length; i++) {
+          var checkDeletedImage = deletingImages[i];
+            for(y = 0; searchResult.length > y; y++ ) {
+              if(checkDeletedImage.charAt(y) == searchResult[y]) {
+                loopCount++;
+                if (loopCount == searchResult.length) {
+                  filteredImages.push(checkDeletedImage);
+                  loopCount = 0;
                 }
-        }
+                // console.log(checkDeletedImage);
+              } else {
+                break;
+              }
+            }
 
 
 
 
-//     console.log(filteredImages.length);
-//     console.log('testing');
-//
-//     console.log(filteredImages);
-//
-//
-//
-// if (filteredImages.length > 0) {
-//
-//
-//
-//     for(i = 0; i < filteredImages.length; i++) {
-//
-//           if(filteredImages[i].charAt(charCheck) != searchResult[charCheck]) {
-//             if (deletingImages.indexOf(filteredImages[i]) == -1){
-//                 deletingImages.push(filteredImages[i]);
-//             } else {
-//               console.log('hello');
-//             }
-//     }
-//
-//     }
-//
-//
-//
-//     for (i = 0; i < deletingImages.length; i++) {
-//       var imagePosition = filteredImages.indexOf(deletingImages[i]);
-//
-//
-//       if (imagePosition != -1) {
-//
-//         filteredImages.splice(imagePosition, 1);
-//
-//       }
-//     }
-//   }
-//
-//
-// // Checks the images array if images are inside, if not this code will be entered
-// // The purpose is to be able to handle user misspelling
-//   if (filteredImages.length === 0)  {
-//
-//       for(i = 0; i < deletingImages.length; i++) { // checks the delted images array
-//           var checkDeletedImage = deletingImages[i];
-//             for(y = 0; searchResult.length > y; y++ ) {
-//               if(checkDeletedImage.charAt(y) == searchResult[y]) {
-//                 loopCount++;
-//                 if (loopCount == searchResult.length) {
-//                   filteredImages.push(checkDeletedImage);
-//                   loopCount = 0;
-//                 }
-//                 // console.log(checkDeletedImage);
-//               } else {
-//                 break;
-//               }
-//             }
-//
-//
-//
-//
-//     }
-//
-//   }
-//
-//   console.log(filteredImages);
-//
-//
-//
+    }
+
+  }
+
+  console.log(filteredImages + 'test');
+
+
+
 
       //
       // if (imagePostions.length != 0) {
@@ -196,9 +145,9 @@ console.log(filteredImages);
     //   var searchResultConcat = searchResult.join('');
     //  console.log(searchResultConcat);
 
-    //
-    //  console.log(deletingImages);
-    // //  console.log(charCheck);
+
+     console.log(deletingImages);
+    //  console.log(charCheck);
 
 
 
