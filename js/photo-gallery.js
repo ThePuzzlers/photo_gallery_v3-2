@@ -40,6 +40,7 @@ for (i = 0; i < images.length; i++) {
   imageListing(imgSrc, thumbSrc, alt); // send it to the function so the string can get created
 }
 
+
 // print out the final string
 print(imgString);
 
