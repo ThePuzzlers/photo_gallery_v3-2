@@ -4,18 +4,20 @@
 
 
 function print( message ) {
-  var outputDiv = document.getElementById('gallery');
+  var outputDiv = document.getElementById('gallery-invisible');
   outputDiv.innerHTML = message;
 }
 
+var searchCount;
 var searchResult = [];
 var matchingImgTag = [];
 var allImages = [];
 var filteredImages = [];
 var charCheck;
 var deletingImages = [];
-var loopCount = 0;
+var loopCount;
 var selectedImage;
+
 
 
 function charLoop (charCheck, userSearch) {
@@ -39,13 +41,15 @@ function charLoop (charCheck, userSearch) {
 }
 
 
-
 for(i = 0; i < images.length; i++) {
 
 
     var imagesTag = images[i].tag;
     allImages.push(imagesTag.toLowerCase());
 }
+
+
+
 
 $( "#user-search" ).keydown(function( event ) {
 
@@ -62,7 +66,7 @@ $( "#user-search" ).keydown(function( event ) {
       }
 
       if (searchResult.length == 1) {
-
+          $( ".wrapper" ).empty();
 
       for(i = 0; i < allImages.length; i++) {
 
@@ -79,7 +83,6 @@ $( "#user-search" ).keydown(function( event ) {
     ///////// All the code underneath works with this selection and updates it
 
 
-console.log(filteredImages);
 
 
     charCheck = searchResult.length -1;
@@ -90,8 +93,22 @@ console.log(filteredImages);
               selectedImage = filteredImages[i];
               trueCount = charLoop(charCheck, userSearch);
 
-                if (trueCount === userSearch){
-                  console.log('true');
+                if (trueCount === userSearch) {
+                  for (z = 0; z < images.length; z++) {
+                        var imagesTagLowerCase = images[z].tag;
+                        imagesTagLowerCase = imagesTagLowerCase.toLowerCase();
+                      if (selectedImage === imagesTagLowerCase) {
+
+                        imgSrc = images[z].imgSrc;
+                        thumbSrc = images[z].thumbSrc;
+                        alt = images[z].alt;
+
+                        imageListingSearch(imgSrc, thumbSrc, alt);
+                        print(imgStringSearch);
+
+                      }
+
+                  }
                 } else {
                   console.log('false');
                 }
@@ -199,7 +216,6 @@ console.log(filteredImages);
     //
     //  console.log(deletingImages);
     // //  console.log(charCheck);
-
 
 
 });

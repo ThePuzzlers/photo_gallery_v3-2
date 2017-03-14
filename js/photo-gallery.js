@@ -12,6 +12,7 @@ var imgString = ''; // to hold the final string
 var imgSrc;
 var thumbSrc;
 var alt;
+var imgStringSearch = '';
 
 
 // to print out in DIV
@@ -26,6 +27,13 @@ function imageListing(imgSrc, thumbSrc, alt) {
   imgString += '" data-rel="lightcase:myCollection"><img src="' + thumbSrc
   imgString += '" alt="' + alt + '"></a></li>'
   return imgString;
+}
+
+function imageListingSearch(imgSrc, thumbSrc, alt) {
+  imgString += '<li><a href="' + imgSrc
+  imgString += '" data-rel="lightcase:myCollection"><img src="' + thumbSrc
+  imgString += '" alt="' + alt + '"></a></li>'
+  return imgStringSearch;
 }
 
 
