@@ -24,7 +24,7 @@ function print( message ) {
 // creates a string with the certain values of the images after use input
 function imageListingSearch(imgSrc, thumbSrc, alt) {
   imgStringSearch += '<li><a href="' + imgSrc
-  imgStringSearch += '" data-rel="lightcase:myCollection"><img src="' + thumbSrc
+  imgStringSearch += '" data-rel="lightcase"><img src="' + thumbSrc
   imgStringSearch += '" alt="' + alt + '"></a></li>'
   return imgStringSearch;
 }
@@ -52,9 +52,3 @@ for (i = 0; i < images.length; i++) {
 
 // print out the final string
 print(imgString);
-
-
-
-
-// for the Gallery Plugin - do not touch! Needs to get loaded last
-$('a[data-rel^=lightcase]').lightcase();

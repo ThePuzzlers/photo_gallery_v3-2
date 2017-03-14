@@ -70,11 +70,5 @@ var images = [
     alt : 'I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in.',
     thumbSrc : 'photos/thumbnails/12.jpg',
     imgSrc : 'photos/12.jpg'
-  },
-  {
-    tag : 'Denver',
-    alt : 'I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in.',
-    thumbSrc : 'photos/thumbnails/12.jpg',
-    imgSrc : 'photos/12.jpg'
   }
 ];

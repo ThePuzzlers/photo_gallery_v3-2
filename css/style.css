@@ -19,7 +19,7 @@ body {
 }
 
 .wrapper img {
-  width: inherit;
+  width: 100%;
   margin: 5% auto 0 auto;
 }
 
