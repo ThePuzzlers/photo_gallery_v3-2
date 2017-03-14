@@ -12,6 +12,7 @@ var imgString = ''; // to hold the final string
 var imgSrc;
 var thumbSrc;
 var alt;
+var imgStringSearch = '';
 
 
 // to print out in DIV
@@ -20,7 +21,15 @@ function print( message ) {
   outputDiv.innerHTML = message;
 }
 
-// creates a string with the certain values of the images
+// creates a string with the certain values of the images after use input
+function imageListingSearch(imgSrc, thumbSrc, alt) {
+  imgStringSearch += '<li><a href="' + imgSrc
+  imgStringSearch += '" data-rel="lightcase:myCollection"><img src="' + thumbSrc
+  imgStringSearch += '" alt="' + alt + '"></a></li>'
+  return imgStringSearch;
+}
+
+// creates a string with the certain values of the images before user input
 function imageListing(imgSrc, thumbSrc, alt) {
   imgString += '<li><a href="' + imgSrc
   imgString += '" data-rel="lightcase:myCollection"><img src="' + thumbSrc
@@ -43,7 +52,6 @@ for (i = 0; i < images.length; i++) {
 
 // print out the final string
 print(imgString);
-
 
 
 

@@ -3,10 +3,10 @@
 // afterwards the data should be submitted in real time
 
 
-function print( message ) {
-  var outputDiv = document.getElementById('gallery');
-  outputDiv.innerHTML = message;
-}
+// function printtwo( message ) {
+//   var outputDiv = document.getElementById('gallery');
+//   outputDiv.innerHTML = message;
+// }
 
 var searchResult = [];
 var matchingImgTag = [];
@@ -18,61 +18,64 @@ var loopCount = 0;
 var selectedImage;
 
 
-function charLoop (charCheck, userSearch) {
+function charLoop (charCheck, userSearch) { // function to check if EVERY char matches
 
   var trueCount = 0;
 
-  for (y = 0; y < userSearch; y++) {
+  for (y = 0; y < userSearch; y++) { // loop through the chars of EACH char in EACH image \ One image at a time
     if(selectedImage.charAt(y) == searchResult[y]){
 
+      // counter to check how many chars are matching
       trueCount = trueCount + 1;
-    } else if (selectedImage.charAt(y) != userSearch[y]) {
+      } else if (selectedImage.charAt(y) != userSearch[y]) {
       trueCount = trueCount + 0;
+      }
     }
-
-  }
-  return trueCount;
-
-  // if (trueCount == userSearch.length) {
-  // }
-
+    return trueCount;
 }
 
-
-
+// get all images out of the 'database' before the start
 for(i = 0; i < images.length; i++) {
-
-
     var imagesTag = images[i].tag;
     allImages.push(imagesTag.toLowerCase());
 }
 
-$( "#user-search" ).keydown(function( event ) {
 
 
+$( "#user-search" ).keydown(function( event ) { // function to check the user input
 
+// check the user input for all charaters which can create a data input
+  if ((event.keyCode >= 48 && event.keyCode <= 90) || (event.keyCode >= 96 && event.keyCode <= 111) || (event.keyCode >= 186 && event.keyCode <= 222)) {
+    var letter = event.key;
+    searchResult.push(letter.toLowerCase()); // push every character into an array
+  }
 
-      if ((event.keyCode >= 48 && event.keyCode <= 90) || (event.keyCode >= 96 && event.keyCode <= 111) || (event.keyCode >= 186 && event.keyCode <= 222)) {
-          var letter = event.key;
-          searchResult.push(letter.toLowerCase());
+// if backspace is pressed
+    else if (event.keyCode == 8) {
+        searchResult.pop(); // pop last character out of the array for the characters
       }
 
-      else if (event.keyCode == 8) {
-          searchResult.pop();
-      }
 
-      if (searchResult.length == 1) {
+  if (searchResult.length >= 1) {
+    $( "#gallery" ).empty(); // empty the id as soon as the user types in a letter | get rid of all displayed images
 
 
-      for(i = 0; i < allImages.length; i++) {
-
-        if(allImages[i].charAt(0) === searchResult[0]) {
-        filteredImages.push(allImages[i]);
+    for(i = 0; i < allImages.length; i++) { // loop through the images
+      if(allImages[i].charAt(0) === searchResult[0]) {  // check if the first char matchs with the first of user input
+        if (filteredImages.indexOf(allImages[i]) == -1) { // check if the matching image is already in the filterd array
+            filteredImages.push(allImages[i]); // if not push the image
         }
       }
     }
+  } else if (searchResult.length == 0) { // if there is no user input
+      for(i = -1; i <= filteredImages.length; i++) { // get rid of all images
+        filteredImages.pop();
+      }
+        print(imgString); // print the start screen
+      }
 
-    ///////// All the code above just puts the related images in an array ONCE
+
+    ///////// All the code above just puts the related images in an array ONCE - this will handle all other steps!
 
 
 
@@ -82,124 +85,44 @@ $( "#user-search" ).keydown(function( event ) {
 console.log(filteredImages);
 
 
-    charCheck = searchResult.length -1;
+    charCheck = searchResult.length -1; // decrease the searchResult by one so we will start on 0 instead of 1
     var userSearch = searchResult.length;
 
 
-        for(i = 0; i < filteredImages.length; i++) {
-              selectedImage = filteredImages[i];
-              trueCount = charLoop(charCheck, userSearch);
+        for(i = 0; i < filteredImages.length; i++) { // loop through the filtered images
+              selectedImage = filteredImages[i]; // store the active image
+              trueCount = charLoop(charCheck, userSearch); // use the function to check if EVERY char matches
 
-                if (trueCount === userSearch){
-                  console.log('true');
+                if (trueCount === userSearch) { // do this if EACH char == to true before
+                  for (z = 0; z < images.length; z++) { // loop through the images to get the different data
+                    var imagesTagLowerCase = images[z].tag;
+                        imagesTagLowerCase = imagesTagLowerCase.toLowerCase();
+                        if (selectedImage === imagesTagLowerCase) { // compare the images and if they are equal go further
+
+
+                            imgSrc = images[z].imgSrc;
+                            thumbSrc = images[z].thumbSrc;
+                            alt = images[z].alt;
+
+                            imageListingSearch(imgSrc, thumbSrc, alt);
+                            print(imgStringSearch); // get the data and print them out
+                          }
+
+                        }
+
+
                 } else {
-                  console.log('false');
+                  // filteredImages.splice(filteredImages[i], 1)
+                  console.log(filteredImages[i] + 'FALSE');
                 }
         }
 
 
-
-
-//     console.log(filteredImages.length);
-//     console.log('testing');
-//
-//     console.log(filteredImages);
-//
-//
-//
-// if (filteredImages.length > 0) {
-//
-//
-//
-//     for(i = 0; i < filteredImages.length; i++) {
-//
-//           if(filteredImages[i].charAt(charCheck) != searchResult[charCheck]) {
-//             if (deletingImages.indexOf(filteredImages[i]) == -1){
-//                 deletingImages.push(filteredImages[i]);
-//             } else {
-//               console.log('hello');
-//             }
-//     }
-//
-//     }
-//
-//
-//
-//     for (i = 0; i < deletingImages.length; i++) {
-//       var imagePosition = filteredImages.indexOf(deletingImages[i]);
-//
-//
-//       if (imagePosition != -1) {
-//
-//         filteredImages.splice(imagePosition, 1);
-//
-//       }
-//     }
-//   }
-//
-//
-// // Checks the images array if images are inside, if not this code will be entered
-// // The purpose is to be able to handle user misspelling
-//   if (filteredImages.length === 0)  {
-//
-//       for(i = 0; i < deletingImages.length; i++) { // checks the delted images array
-//           var checkDeletedImage = deletingImages[i];
-//             for(y = 0; searchResult.length > y; y++ ) {
-//               if(checkDeletedImage.charAt(y) == searchResult[y]) {
-//                 loopCount++;
-//                 if (loopCount == searchResult.length) {
-//                   filteredImages.push(checkDeletedImage);
-//                   loopCount = 0;
-//                 }
-//                 // console.log(checkDeletedImage);
-//               } else {
-//                 break;
-//               }
-//             }
-//
-//
-//
-//
-//     }
-//
-//   }
-//
-//   console.log(filteredImages);
-//
-//
-//
-
-      //
-      // if (imagePostions.length != 0) {
-      //   var slicing = imagePostions.join();
-      //   console.log(slicing);
-      //
-        // var testing = filteredImages.remove(0,2);
-        // console.log(testing);
-      // }
-
-
-
-    //   for(i = 0; i < allImages.length; i++) {
-    //     if(allImages[i].charAt(charCheck) === searchResult[charCheck]) {
-    //     filteredImages.push(allImages[i]);
-    // }
-
-    //     else if(allImages[i].charAt(charCheck) != searchResult[charCheck]) {
-    //     filteredImages.pop(allImages[i]);
-    // }
-
-
-    // console.log(filteredImages);
-
-
-    //   var searchResultConcat = searchResult.join('');
-    //  console.log(searchResultConcat);
-
-    //
-    //  console.log(deletingImages);
-    // //  console.log(charCheck);
-
+    imgStringSearch = ''; //reset the string so each item will just displayed once
 
 
 });
+
+
+// for the Gallery Plugin - do not touch! Needs to get loaded last
+$('a[data-rel^=lightcase]').lightcase();
