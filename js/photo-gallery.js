@@ -37,6 +37,13 @@ function imageListing(imgSrc, thumbSrc, alt) {
   return imgString;
 }
 
+function imageListingSearch(imgSrc, thumbSrc, alt) {
+  imgString += '<li><a href="' + imgSrc
+  imgString += '" data-rel="lightcase:myCollection"><img src="' + thumbSrc
+  imgString += '" alt="' + alt + '"></a></li>'
+  return imgStringSearch;
+}
+
 
 
 // loops through the array and gets the data from the objects
