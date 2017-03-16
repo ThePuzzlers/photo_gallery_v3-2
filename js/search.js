@@ -46,8 +46,8 @@ $( "#user-search" ).keydown(function( event ) { // function to check the user in
         thumbSrc = images[i].thumbSrc;
         alt = images[i].alt;
 
-        imageListingSearch(imgSrc, thumbSrc, alt);
-        print(imgStringSearch); // get the data and print them out
+        imageListing(imgSrc, thumbSrc, alt);
+        print(imgString); // get the data and print them out
 
     } }
   } else if (searchResult.length == 0) { // if there is no user input
@@ -58,5 +58,5 @@ $( "#user-search" ).keydown(function( event ) { // function to check the user in
     // for the Gallery Plugin - do not touch! Needs to get loaded last - inside the function for the search field
     $('a[data-rel^=lightcase]').lightcase();
     filteredImages = [];
-    imgStringSearch = [];
+    imgString = [];
 });

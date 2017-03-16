@@ -21,13 +21,6 @@ function print( message ) {
   outputDiv.innerHTML = message;
 }
 
-// creates a string with the certain values of the images after use input
-function imageListingSearch(imgSrc, thumbSrc, alt) {
-  imgStringSearch += '<li><a href="' + imgSrc
-  imgStringSearch += '" data-rel="lightcase"><img src="' + thumbSrc
-  imgStringSearch += '" alt="' + alt + '"></a></li>'
-  return imgStringSearch;
-}
 
 // creates a string with the certain values of the images before user input
 function imageListing(imgSrc, thumbSrc, alt) {
@@ -52,6 +45,8 @@ for (i = 0; i < images.length; i++) {
 
 // print out the final string
 print(imgString);
+imgString = []; //reset the string once the page is printed out
+
 
 // for the Gallery Plugin - do not touch! Needs to get loaded last - inside the function for the search field
 $('a[data-rel^=lightcase]').lightcase();
