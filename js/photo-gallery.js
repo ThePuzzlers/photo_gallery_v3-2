@@ -12,7 +12,7 @@ var imgString = ''; // to hold the final string
 var imgSrc;
 var thumbSrc;
 var alt;
-var imgStringSearch = '';
+var backupString = '';
 
 
 // to print out in DIV
@@ -45,6 +45,7 @@ for (i = 0; i < images.length; i++) {
 
 // print out the final string
 print(imgString);
+backupString = imgString; // to get the string back without user input
 imgString = []; //reset the string once the page is printed out
 
 
