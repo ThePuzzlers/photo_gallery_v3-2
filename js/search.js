@@ -9,34 +9,9 @@
 // }
 
 var searchResult = [];
-var matchingImgTag = [];
-var allImages = [];
-var filteredImages = [];
-var charCheck;
-var deletingImages = [];
-var loopCount = 0;
-var selectedImage;
 var imagesAlt;
 var altSearch;
 var searchPara;
-
-
-function charLoop (charCheck, userSearch) { // function to check if EVERY char matches
-
-  var trueCount = 0;
-
-  for (y = 0; y < userSearch; y++) { // loop through the chars of EACH char in EACH image \ One image at a time
-    if(selectedImage.charAt(y) == searchResult[y]){
-      console.log(trueCount);
-
-      // counter to check how many chars are matching
-      trueCount = trueCount + 1;
-      } else if (selectedImage.charAt(y) != userSearch[y]) {
-      trueCount = trueCount + 0;
-      }
-    }
-    return trueCount;
-}
 
 
 
@@ -45,7 +20,7 @@ $( "#user-search" ).keydown(function( event ) { // function to check the user in
 // check the user input for all charaters which can create a data input
   if ((event.keyCode >= 48 && event.keyCode <= 90) || (event.keyCode >= 96 && event.keyCode <= 111) || (event.keyCode >= 186 && event.keyCode <= 222)) {
     var letter = event.key;
-    searchResult.push(letter.toLowerCase()); // push every character into an array
+    searchResult.push(letter.toLowerCase()); // push every character into an array, set to lowerCase
   }
 
 // if backspace is pressed
@@ -59,16 +34,14 @@ $( "#user-search" ).keydown(function( event ) { // function to check the user in
 
 
     for(i = 0; i < images.length; i++) { // loop through the images
-      searchPara = searchResult.join("");
+      searchPara = searchResult.join(""); // join the userInput Array
 
-      imagesAlt = images[i].alt.toLowerCase();
+      imagesAlt = images[i].alt.toLowerCase(); // set everything to LowerCase to match with user Input
+
+      altSearch = imagesAlt.search(searchPara); // now search the whole alt string for matching char in the right order
 
 
-      altSearch = imagesAlt.search(searchPara);
-
-
-      // console.log(altSearch + 'HEEEEELLLOOO');
-      if(altSearch >= 0) {  // check if the first char matchs with the first of user input
+      if(altSearch >= 0) {  // check if there are matching chars and print the images to the page
         imgSrc = images[i].imgSrc;
         thumbSrc = images[i].thumbSrc;
         alt = images[i].alt;
@@ -78,25 +51,12 @@ $( "#user-search" ).keydown(function( event ) { // function to check the user in
 
     } }
   } else if (searchResult.length == 0) { // if there is no user input
-      for(i = -1; i <= filteredImages.length; i++) { // get rid of all images
-        filteredImages.pop();
-      }
         print(imgString); // print the start screen
       }
 
-
-    ///////// All the code above just puts the related images in an array ONCE - this will handle all other steps!
-
-
-
-    ///////// All the code underneath works with this selection and updates it
 
     // for the Gallery Plugin - do not touch! Needs to get loaded last - inside the function for the search field
     $('a[data-rel^=lightcase]').lightcase();
     filteredImages = [];
     imgStringSearch = [];
 });
-
-
-// for the Gallery Plugin - do not touch! Needs to get loaded last
-$('a[data-rel^=lightcase]').lightcase();

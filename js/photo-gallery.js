@@ -52,3 +52,6 @@ for (i = 0; i < images.length; i++) {
 
 // print out the final string
 print(imgString);
+
+// for the Gallery Plugin - do not touch! Needs to get loaded last - inside the function for the search field
+$('a[data-rel^=lightcase]').lightcase();
