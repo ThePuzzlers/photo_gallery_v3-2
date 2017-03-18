@@ -9,7 +9,6 @@ var searchPara;
 var letter;
 
 
-
 $( "#user-search" ).keydown(function( event ) { // function to check the user input
 
 // check the user input for all charaters which can create a data input
@@ -29,6 +28,7 @@ $( "#user-search" ).keydown(function( event ) { // function to check the user in
   if (searchResult.length >= 1) {
     $( "#gallery" ).empty(); // empty the id as soon as the user types in a letter | get rid of all displayed images
 
+    var imagesCount = 0; // check if images were found
 
     for(i = 0; i < images.length; i++) { // loop through the images
 
@@ -45,7 +45,12 @@ $( "#user-search" ).keydown(function( event ) { // function to check the user in
         imageListing(imgSrc, thumbSrc, alt);
         print(imgString); // get the data and print them out
 
-    } }
+        imagesCount += 1;
+    }
+  } if (imagesCount == 0) { print('<div id="alien"></div>');
+    }
+
+
   } else if (searchResult.length == 0) { // if there is no user input
         print(backupString); // print the start screen
       }
